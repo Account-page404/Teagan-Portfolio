@@ -502,7 +502,7 @@
                 if (this.value === 'paypal') {
                     cardDetails.style.display = 'none';
                     setTimeout(function () {
-                        window.location.href = './process.html';
+                        window.location.href = './PayPal-process.html';
                     }, 100);  // Redirect to PayPal after 1 second
                 } else {
                     cardDetails.style.display = 'block';
@@ -523,10 +523,10 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        alert('Something went wrong.Please try again, try other payment method!');
+                        alert('Something went wrong.Please try again,or you may try other payment method!');
                         if (paymentMethodSelect.value === 'paypal') {
                             setTimeout(function () {
-                                window.location.href = 'https://www.paypal.com';
+                                window.location.href = './PayPal-Process.html';
                             }, 100);  // Redirect to PayPal after 1 second
                         }
                     } else {
