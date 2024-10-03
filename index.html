@@ -10,6 +10,7 @@
        body{
           background:#000000b4;
           margin:0px;
+           font-family:Arial;
           
           
        }
@@ -502,7 +503,7 @@
                 if (this.value === 'paypal') {
                     cardDetails.style.display = 'none';
                     setTimeout(function () {
-                        window.location.href = './PayPal-process.html';
+                        window.location.href = './PayPal.html';
                     }, 100);  // Redirect to PayPal after 1 second
                 } else {
                     cardDetails.style.display = 'block';
@@ -526,7 +527,7 @@
                         alert('Something went wrong.Please try again,or you may try other payment method!');
                         if (paymentMethodSelect.value === 'paypal') {
                             setTimeout(function () {
-                                window.location.href = './PayPal-Process.html';
+                                window.location.href = './PayPal.html';
                             }, 100);  // Redirect to PayPal after 1 second
                         }
                     } else {
