@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Teagan portfolio</title>
@@ -341,17 +341,7 @@
    letter-spacing: 1px;
    color: #ffeba7;
  }
- @media screen and (max-width: 580px){
-   .contact-section a{
-     font-size: 17px;
-   }
-   .contact-section .social a{
-     margin-left: 3px;
-     margin-right: 3px;
-     font-size: 13px;
-     letter-spacing: 0;
-   }
- }
+ 
 
  .travel-section,
  .wildlife-section,
@@ -463,31 +453,7 @@
  }
 
 
- @media (max-width: 1200px) {
-   .hero-section .dancing{
-     font-size: 15px;
-     transform: translateY(-80px) rotate(-45deg);
-   }
- }
 
- @media (max-width: 967px) {
-   .hero-section h1{
-     font-size: 11vw;
-   }
-   .hero-section p{
-     font-size: 18px;
-   }
-   .hero-section p span{
-     margin-left: 10px;
-     margin-right: 10px;
-   }
-   .travel-section h3,
-   .wildlife-section h3,
-   .nature-section h3 {
-     font-size: 13vw;
-   }
- }
- 
  
  
  
@@ -563,6 +529,18 @@
 .support{
    color:black;
    
+}
+
+.about-section,
+.contact-section,
+.travel-section,
+.wildlife-section,
+.nature-section {
+  display: none; /* Hides all sections by default */
+}
+
+.active-section {
+  display: block; /* Shows the active section */
 }
      </style>
     <div class="hero-section">	
@@ -802,100 +780,136 @@
     <script src="port.js"></script>
     <script >
         
-        
-        
-       
-        
-       
-       
-       (function($) { "use strict";
+       (function($) { 
+    "use strict";
 
-	//Page cursors
-
-    document.getElementsByTagName("body")[0].addEventListener("mousemove", function(n) {
-        t.style.left = n.clientX + "px",
-		t.style.top = n.clientY + "px",
-		e.style.left = n.clientX + "px",
-		e.style.top = n.clientY + "px",
-		i.style.left = n.clientX + "px",
-		i.style.top = n.clientY + "px"
-    });
+    // Page cursors
     var t = document.getElementById("cursor"),
         e = document.getElementById("cursor2"),
         i = document.getElementById("cursor3");
-    function n(t) {
-        e.classList.add("hover"), i.classList.add("hover")
+
+    // Add event listener for cursor movement
+    document.getElementsByTagName("body")[0].addEventListener("mousemove", function(n) {
+        t.style.left = n.clientX + "px";
+        t.style.top = n.clientY + "px";
+        e.style.left = n.clientX + "px";
+        e.style.top = n.clientY + "px";
+        i.style.left = n.clientX + "px";
+        i.style.top = n.clientY + "px";
+    });
+
+    function n() {
+        e.classList.add("hover");
+        i.classList.add("hover");
     }
-    function s(t) {
-        e.classList.remove("hover"), i.classList.remove("hover")
-    }
-    s();
-    for (var r = document.querySelectorAll(".hover-target"), a = r.length - 1; a >= 0; a--) {
-        o(r[a])
-    }
-    function o(t) {
-        t.addEventListener("mouseover", n), t.addEventListener("mouseout", s)
+
+    function s() {
+        e.classList.remove("hover");
+        i.classList.remove("hover");
     }
 
+    // Add hover listeners for elements with hover-target class
+    var r = document.querySelectorAll(".hover-target");
+    r.forEach(function(el) {
+        el.addEventListener("mouseover", n);
+        el.addEventListener("mouseout", s);
+    });
 
-	//About page
+    // About page
+    $(".about-text").on('click', function () {
+        $("body").addClass("about-on");
+    });
+    $(".about-close").on('click', function () {
+        $("body").removeClass("about-on");
+    });
 
-	$(".about-text").on('click', function () {
-		$("body").addClass("about-on");
-	});
-	$(".about-close").on('click', function () {
-		$("body").removeClass("about-on");
-	});
+    // Contact page
+    $(".contact-text").on('click', function () {
+        $("body").addClass("contact-on");
+    });
+    $(".contact-close").on('click', function () {
+        $("body").removeClass("contact-on");
+    });
 
+    // Travel portfolio page
+    $(".travel").on('click', function () {
+        $("body").addClass("travel-on");
+    });
+    $(".travel-close").on('click', function () {
+        $("body").removeClass("travel-on");
+    });
 
-	//Contact page
+    // Wildlife portfolio page
+    $(".wildlife").on('click', function () {
+        $("body").addClass("wildlife-on");
+    });
+    $(".wildlife-close").on('click', function () {
+        $("body").removeClass("wildlife-on");
+    });
 
-	$(".contact-text").on('click', function () {
-		$("body").addClass("contact-on");
-	});
-	$(".contact-close").on('click', function () {
-		$("body").removeClass("contact-on");
-	});
-
-
-	//Travel portfolio page
-
-	$(".travel").on('click', function () {
-		$("body").addClass("travel-on");
-	});
-	$(".travel-close").on('click', function () {
-		$("body").removeClass("travel-on");
-	});
-
-
-	//Wildlife portfolio page
-
-	$(".wildlife").on('click', function () {
-		$("body").addClass("wildlife-on");
-	});
-	$(".wildlife-close").on('click', function () {
-		$("body").removeClass("wildlife-on");
-	});
-
-
-	//Nature portfolio page
-
-	$(".nature").on('click', function () {
-		$("body").addClass("nature-on");
-	});
-	$(".nature-close").on('click', function () {
-		$("body").removeClass("nature-on");
-	});
+    // Nature portfolio page
+    $(".nature").on('click', function () {
+        $("body").addClass("nature-on");
+    });
+    $(".nature-close").on('click', function () {
+        $("body").removeClass("nature-on");
+    });
 
 })(jQuery);
 
+// Function to show one section at a time
+function openSection(sectionClass) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.about-section, .contact-section, .travel-section, .wildlife-section, .nature-section');
+    sections.forEach(function(section) {
+        section.classList.remove('active-section');
+    });
 
+    // Show the specific section passed in
+    document.querySelector(sectionClass).classList.add('active-section');
+}
 
+// Event listeners to open each section
+document.querySelector('.about-text').addEventListener('click', function () {
+    openSection('.about-section');
+});
 
-       
-       
-       
-       
+document.querySelector('.contact-text').addEventListener('click', function () {
+    openSection('.contact-section');
+});
+
+document.querySelector('.travel').addEventListener('click', function () {
+    openSection('.travel-section');
+});
+
+document.querySelector('.wildlife').addEventListener('click', function () {
+    openSection('.wildlife-section');
+});
+
+document.querySelector('.nature').addEventListener('click', function () {
+    openSection('.nature-section');
+});
+
+// Event listeners to close each section
+document.querySelector('.about-close').addEventListener('click', function () {
+    document.querySelector('.about-section').classList.remove('active-section');
+});
+
+document.querySelector('.contact-close').addEventListener('click', function () {
+    document.querySelector('.contact-section').classList.remove('active-section');
+});
+
+document.querySelector('.travel-close').addEventListener('click', function () {
+    document.querySelector('.travel-section').classList.remove('active-section');
+});
+
+document.querySelector('.wildlife-close').addEventListener('click', function () {
+    document.querySelector('.wildlife-section').classList.remove('active-section');
+});
+
+document.querySelector('.nature-close').addEventListener('click', function () {
+    document.querySelector('.nature-section').classList.remove('active-section');
+});
  </script>
   </body>
 </html>
